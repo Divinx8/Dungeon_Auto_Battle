@@ -1,35 +1,38 @@
-#include <iostream>
-using namespace std;
-#include <string>
 class Mage : public Hero {
-
 public:
-    Mage(string name, int pv, int att, int def, int vit, int Max)
-        : Hero(name, pv, att, def, vit, Max) {}
+    Mage(const string& nom, int pvInit, int att, int def, int vit, int maxPv)
+        : Hero(name, pvInit, att, def, vit, maxPv) {}
 
-    // Identifiant de classe
     int getClasse() const override {
         return 2; // Mage
     }
 
-    // Calcul des dégâts du Mage
     int calculerDegats(const Hero& cible) const override {
 
-        // 1) Ignorer 30% de la défense
-        int defenceEffective = cible.getDefence() * 70 / 100;
+        // 1) Défense effective : le Mage ignore 30%
+        int defEff = (cible.getDefence() * 70) / 100;
 
-        if (defenceEffective <= 0)
-            defenceEffective = 1;
+        // équivalent de max(1, defEff)
+        if (defEff < 1)
+            defEff = 1;
 
-        // 2) Dégâts de base (attaque est la stat principale)
-        int degats = attaque / defenceEffective;
+        
+        // facteur entre 0.70 et 1.30
+        double facteur = 0.70 + (rand() % 61) / 100.0;
 
-        if (degats < 1)
-            degats = 1;
+        // 3) Bonus de classe
+        double bonus = 1.0;
 
-        // 3) Petit hasard (entre 0 et +5)
-        degats += rand() % 6;
+        // 4) Formule officielle
+        double degats =
+            ((double)attaque / (double)defEff) * facteur * bonus;
 
-        return degats;
+        // 5) Conversion en entier
+        int res = (int)(degats + 0.5);
+
+        if (res < 1)
+            res = 1;
+
+        return res;
     }
 };
