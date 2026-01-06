@@ -55,7 +55,7 @@ class Hero {
    int getDefence() const{
     return defence;
    }
-   int geteVitesse(){
+   int geteVitesse()const{
     return vitesse;
    }
    string getNom(){
