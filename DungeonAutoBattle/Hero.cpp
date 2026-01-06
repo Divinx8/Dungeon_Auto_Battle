@@ -27,6 +27,7 @@ class Hero {
      // Méthodes virtuelles
     virtual void afficherStats() const;
     virtual void perdrePV(int montant);
+    bool estvivant() const {return pvActuel>0}
     virtual void effetDebutTour() {}
     virtual void effetFinTour() {}
 
