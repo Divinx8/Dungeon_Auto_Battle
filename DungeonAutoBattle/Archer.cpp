@@ -9,10 +9,10 @@ public:
         : Hero(name, pvInit, att, def, vit, maxPv) {}
 
     int getClasse() const override {
-        return 3; // Archer
+        return 3; 
     }
 
-    // Chance d'esquive basée sur la vitesse
+    
     bool esquive() const {
         int chance = vitesse / 4;
 
@@ -22,14 +22,14 @@ public:
         return (rand() % 100) < chance;
     }
 
-    // Calcul des dégâts selon la formule imposée
+    
     int calculerDegats(const Hero& cible) const override {
 
         int defEff = cible.getDefence();
         if (defEff < 1)
             defEff = 1;
 
-        // Facteur aléatoire stable : 0.90 à 1.10
+        
         double facteur = 0.90 + (rand() % 21) / 100.0;
 
         double bonus = 1.0;
@@ -41,14 +41,14 @@ public:
         if (res < 1)
             res = 1;
 
-        // Coup critique (20%)
+        
         if ((rand() % 100) < 20)
             res *= 2;
 
         return res;
     }
 
-    // Application réelle de l'esquive
+    
     void perdrePV(int montant) override {
         if (esquive())
             return;
