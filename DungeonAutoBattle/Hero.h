@@ -1,7 +1,3 @@
-#include <iostream>
-using namespace std;
-#include <string>
-
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
@@ -19,15 +15,13 @@ protected:
 
 public:
     Hero(string name, int pvInit, int att, int def, int vit)
-        : nom(name), pv(pvInit), attaque(att), defence(def), vitesse(vit), **pvMax(pvInit)** {}
+        : nom(name), pv(pvInit), attaque(att), defence(def), vitesse(vit), pvMax(pvInit) {}
     
-    virtual ~Hero() {}
-
+    virtual ~Hero() = default;
+    
     virtual int getClasse() const = 0;
     virtual int calculerDegats(const Hero& cible) const = 0;
-    virtual void effetDebutTour() {}
-    virtual void effetFinTour() {}
-
+    
     void afficherStats() const {
         cout << "Nom : " << nom << " | PV: " << pv << "/" << pvMax 
              << " | ATK: " << attaque << " | DEF: " << defence 
@@ -39,14 +33,14 @@ public:
         if (pv < 0) pv = 0;
     }
     
-    bool **estVivant()** const { return **pv > 0**; }
-    void resetPV() { pv = pvMax; }
-
+    bool estVivant() const { return pv > 0; }
+    
     int getPV() const { return pv; }
-    int **getPvMax()** const { return pvMax; }
+    int getPvMax() const { return pvMax; }
     int getDefence() const { return defence; }
-    int **getVitesse()** const { return vitesse; }
+    int getVitesse() const { return vitesse; }
     string getNom() const { return nom; }
 };
 
 #endif
+

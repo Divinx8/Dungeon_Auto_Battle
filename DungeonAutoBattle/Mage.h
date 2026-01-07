@@ -1,8 +1,3 @@
-#ifndef MAGE_H
-#define MAGE_H
-#include "Hero.h"
-#include <cstdlib>
-
 using namespace std;
 
 class Mage : public Hero {
@@ -13,6 +8,3 @@ public:
 
     int calculerDegats(const Hero& cible) const override;
 };
-
-
-#endif

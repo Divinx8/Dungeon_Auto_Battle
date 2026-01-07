@@ -2,10 +2,9 @@
 using namespace std;
 #include <string>
 
-
 class Archer : public Hero {
 public:
-    Archer(const string& name, int pvInit, int att, int def, int vit, int maxPv)
+    Archer(const string name, int pvInit, int att, int def, int vit, int maxPv)
         : Hero(name, pvInit, att, def, vit, maxPv) {}
 
     int getClasse() const override {
@@ -16,7 +15,7 @@ public:
     bool esquive() const {
         int chance = vitesse / 4;
 
-        if (chance > 25)
+        if (chance > 25) // Fixer la chance à 25% pour le hero ne soit pas invincible
             chance = 25;
 
         return (rand() % 100) < chance;

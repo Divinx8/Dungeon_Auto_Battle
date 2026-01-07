@@ -15,9 +15,10 @@ class Guerrier:public Hero{
 
 
     //Calculer les degats 
-    int calculerDegats(const Hero& cible) const override;
+   
  
-    int Guerrier::calculerDegats(const Hero& cible)const{
+    int calculerDegats(const Hero& cible)const{
+         
         int base =(attaque/max(1,cible.getDefence()))*0.9;
         double bonus=1.0;
 
@@ -37,6 +38,19 @@ class Guerrier:public Hero{
         return 1;
     }
 
+    void effetDebutTour() override {
+        int regen = 5;
+        pv = std::min(pv + regen, pvMax);
+        cout << nom << " regen +" << regen << " PV (" << getPV() << "/" << pvMax << ")" << endl;
+    }
 
+void effetFinTour() override {
+        cout << nom << " se met en garde (+10 DEF)!" << endl;
+        // Tu peux ajouter vraie logique DEF ici
+    }
+ void effetFinTour() override {
+        cout << nom << " se met en garde (+10 DEF)!" << endl;
+        // Tu peux ajouter vraie logique DEF ici
+    }
   
 }
